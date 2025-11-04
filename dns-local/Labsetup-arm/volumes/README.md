@@ -6,7 +6,20 @@ This README provides step-by-step instructions and commands to run each DNS spoo
 
 - Docker and docker-compose installed
 - Lab containers running (`docker-compose up`)
-- Working directory: `/Users/tgulur/Documents/EE595Au25/Lab4/dns-local/Labsetup-arm`
+- Working directory: `Labsetup-arm` (the directory containing `docker-compose.yml`)
+
+**Important**: Throughout this guide, `/path/to/Labsetup-arm` is used as a placeholder. Replace it with your actual path to the `Labsetup-arm` directory. 
+
+**Quick Setup**: Set an environment variable to simplify commands:
+```bash
+# Set your working directory (adjust the path as needed)
+export LAB_DIR="/path/to/Labsetup-arm"
+
+# Then you can use:
+cd $LAB_DIR
+```
+
+Or simply navigate to your `Labsetup-arm` directory and run all `docker-compose` commands from there without the `cd` prefix.
 
 ## Overview of Scripts
 
@@ -33,7 +46,7 @@ This README provides step-by-step instructions and commands to run each DNS spoo
 
 ```bash
 # 1. Navigate to lab directory
-cd /Users/tgulur/Documents/EE595Au25/Lab4/dns-local/Labsetup-arm
+cd /path/to/Labsetup-arm
 
 # 2. Kill any running spoofers
 docker-compose exec attacker sh -c "pkill -9 python3 || true"
@@ -91,7 +104,7 @@ You should see:
 
 ```bash
 # 1. Navigate to lab directory
-cd /Users/tgulur/Documents/EE595Au25/Lab4/dns-local/Labsetup-arm
+cd /path/to/Labsetup-arm
 
 # 2. Kill any running spoofers
 docker-compose exec attacker sh -c "pkill -9 python3 || true"
@@ -156,7 +169,7 @@ The `--target-resolver` flag changes the BPF filter from `udp and dst port 53` t
 
 ```bash
 # 1. Navigate to lab directory
-cd /Users/tgulur/Documents/EE595Au25/Lab4/dns-local/Labsetup-arm
+cd /path/to/Labsetup-arm
 
 # 2. Kill any running spoofers
 docker-compose exec attacker sh -c "pkill -9 python3 || true"
@@ -229,7 +242,7 @@ An NS record delegates authority for an entire DNS zone. When the resolver cache
 
 ```bash
 # 1. Navigate to lab directory
-cd /Users/tgulur/Documents/EE595Au25/Lab4/dns-local/Labsetup-arm
+cd /path/to/Labsetup-arm
 
 # 2. Kill any running spoofers
 docker-compose exec attacker sh -c "pkill -9 python3 || true"
@@ -364,7 +377,26 @@ docker-compose down
 - Bridge interface name (`br-xxxxxxxx`) may vary - use `ip addr show` to find yours
 - TTL values are set to 259200 seconds (~3 days) in the spoofed records
 
+### Finding Your Labsetup-arm Directory
+
+The `Labsetup-arm` directory is located wherever you cloned/extracted the lab files. It should contain:
+- `docker-compose.yml`
+- `image_attacker_ns/`, `image_local_dns_server/`, `image_user/` subdirectories
+- `volumes/` subdirectory (containing these Python scripts and this README)
+
+Common locations:
+```bash
+~/Downloads/Labsetup-arm
+~/Documents/Lab4/dns-local/Labsetup-arm
+~/Desktop/SEED-Labs/dns-local/Labsetup-arm
+```
+
+To find it on your system:
+```bash
+find ~ -name "docker-compose.yml" -path "*/Labsetup-arm/*" 2>/dev/null
+```
+
 ---
 
-**Author**: Tejas Gulur  
+**Author**: Generated for EE595 Lab 4  
 **Date**: November 2025
