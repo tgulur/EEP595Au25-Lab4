@@ -2,6 +2,8 @@
 
 This README provides step-by-step instructions and commands to run each DNS spoofing task.
 
+It was created using GenAI based on the commands I had run
+
 ## Prerequisites
 
 - Docker and docker-compose installed
@@ -398,5 +400,5 @@ find ~ -name "docker-compose.yml" -path "*/Labsetup-arm/*" 2>/dev/null
 
 ---
 
-**Author**: Generated for EE595 Lab 4  
+**Author**: Tejas Gulur (acknowledgement: this README.md was created with GenAI)
 **Date**: November 2025
